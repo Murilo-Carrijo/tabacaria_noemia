@@ -1,6 +1,9 @@
-from src.data_loader import load_data
-from src.preprocessing import preprocess, agrupar_produtos_com_menos_nome
-from src.analysis import (
+from src.vendas.data_loader import load_data
+from src.vendas.preprocessing import (
+  preprocess,
+  agrupar_produtos_com_menos_nome
+)
+from src.vendas.analysis import (
   top_produtos_quantidade,
   top_produtos_lucro,
   vendas_por_mes,
@@ -11,7 +14,7 @@ from src.analysis import (
   correlation_matrix,
   analises
 )
-from src.visualization import plot_vendas_mes, plot_top_produtos
+from src.vendas.visualization import plot_vendas_mes, plot_top_produtos
 import os
 
 df = load_data()

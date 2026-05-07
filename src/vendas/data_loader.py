@@ -1,6 +1,6 @@
 import sqlite3
 import pandas as pd
-from src.config import DATABASE_PATH, TABLE_NAME
+from src.vendas.config import DATABASE_PATH, TABLE_NAME
 
 
 def load_data() -> pd.DataFrame:
