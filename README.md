@@ -18,8 +18,7 @@ Explorar os dados para identificar:
 ## 📂 Estrutura
 - `data/` → base de dados
 - `src/` → código modularizado
-- `notebooks/` → análise exploratória
-- `outputs/` → gráficos e resultados
+- `dashboard/` → páginas de gráficos e resultados
 
 ## 📊 Principais análises
 - Top produtos por quantidade
@@ -30,14 +29,13 @@ Explorar os dados para identificar:
 ## ▶️ Como rodar
 
 ```bash
-# instale as dependências
+# 1 crie um ambiente para dev python
+python3 -m venv .venv
+# 2 ative o ambiente virtual
+source .venv/bin/activate
+# 3 instale as dependências
 pip install -r requirements.txt
-# rode o jupyter notebook
-jupyter notebook
-
-  ou
-
-# instale as dependências
-pip install -r requirements.txt
-# rode o comando no ambiente local e gere os relatórios e graficos.
-python3 main.py
+# 4 crie o diretório /data na raiz no projeto
+# 5 inclua o banco de dados com o nome banco_de_dados.db
+# 6 rode o projeto
+export PYTHONPATH=$PWD && streamlit run dashboard/home.py
