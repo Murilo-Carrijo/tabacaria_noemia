@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def preprocess(df):
+def enrich_stock_data(df):
     df = df.drop(columns=['id_estoque', 'data_vencimento'])
     cols_num = [
         'Preco_Custo',
@@ -11,6 +11,7 @@ def preprocess(df):
         'Total_Preco_Venda',
         'estoque_minimo',
     ]
+
     for col in cols_num:
         if col in df.columns:
             s = df[col]
@@ -46,5 +47,27 @@ def preprocess(df):
 
         # 3) remove origem e adiciona linha agregada
         df = pd.concat([keep, aggregated], ignore_index=True)
+
+    df["valor_estoque"] = (
+        df["Quantidade"] *
+        df["Preco_Custo"]
+    )
+
+    df["margem"] = (
+        (df["Preco_Venda"] - df["Preco_Custo"])
+        / df["Preco_Venda"]
+    )
+
+    df['estoque_minimo'] = pd.to_numeric(df['estoque_minimo'], errors='coerce')
+    df['estoque_minimo'] = df['estoque_minimo'].fillna(0).astype(int)
+
+    return df
+
+
+def enrich_seles_data(df):
+    df['data'] = pd.to_datetime(df['datas'])
+    df['total_vendas'] = df['valor_venda'] * df['quantidade']
+    df['total_custo'] = df['valor_custo'] * df['quantidade']
+    df['total_lucro'] = df['valor_venda'] - df['total_custo']
 
     return df

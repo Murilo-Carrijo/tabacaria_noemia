@@ -1,7 +1,11 @@
 pandas
 matplotlib
 seaborn
-jupyter
 flake8
 black
 openpyxl
+streamlit
+numpy
+statsmodels
+scikit-learn
+plotly
